@@ -99,23 +99,37 @@ def printElements(elements):
 imageUrlProp = Property('url', 'www.placeholder.com/DEFAULT')
 imageBorderProp = Property('border', 'blue')
 imageElement1 = Element('image', [imageUrlProp.id, imageBorderProp.id])
-englishDesign1 = Design([imageElement1.id])
+
+rectangleWidthProp = Property('width', "300")
+rectangleHeightProp = Property('height', "300")
+rectangleElement1 = Element('rectangle', [rectangleWidthProp.id, rectangleHeightProp.id])
+
+englishDesign1 = Design([imageElement1.id, rectangleElement1.id])
 
 
 # Swedish Version
 swedishImageUrlProp = Property('url', 'www.placeholder.com/SE')
+swedishRectangleHeightProp = Property('height', "900")
+
 addVersionPropertyMapping(imageElement1.id, swedishImageUrlProp.id)
-swedishVersionId = addVersion('Swedish', [swedishImageUrlProp])
+addVersionPropertyMapping(rectangleElement1.id, swedishRectangleHeightProp.id)
+
+swedishVersionId = addVersion('Swedish', [swedishImageUrlProp, swedishRectangleHeightProp])
 
 
 # store
+# image
 propertiesDB.append(imageUrlProp)
 propertiesDB.append(imageBorderProp)
 propertiesDB.append(swedishImageUrlProp)
+# rectangle
+propertiesDB.append(rectangleWidthProp)
+propertiesDB.append(rectangleHeightProp)
+propertiesDB.append(swedishRectangleHeightProp)
 
 designsDB.append(englishDesign1)
 elementsDB.append(imageElement1)
-
+elementsDB.append(rectangleElement1)
 
 
 # 1. Query Design
